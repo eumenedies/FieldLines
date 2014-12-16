@@ -8,18 +8,20 @@ import cv2
 import sys
 
 
-def get_gradient(points, index):
-    x = points[:, 0, 0]
-    y = points[:, 0, 1]
-    for x_loc in range(0, len(x)):
-        if x_loc > 2 and x_loc < len(x)-2:
-            x_5 = [x[x_loc-2], x[x_loc-1], x[x_loc], x[x_loc+1], x[x_loc+2]]
-            y_5 = [y[x_loc-2], y[x_loc-1], y[x_loc], y[x_loc+1], y[x_loc+2]]
-            s = interpolate.UnivariateSpline(x_5, y_5)
-            xs = np.linspace(x_5[0], x_5[len(x_5)-1])
-            ys = s(x_5)
-            plt.plot(x_5, ys)
-    plt.show()
+##### Attempt at using spline interpolation to get gradient at point,
+# doesnt work yet #######
+# def get_gradient(points, index):
+#     x = points[:, 0, 0]
+#     y = points[:, 0, 1]
+#     for x_loc in range(0, len(x)):
+#         if x_loc > 2 and x_loc < len(x)-2:
+#             x_5 = [x[x_loc-2], x[x_loc-1], x[x_loc], x[x_loc+1], x[x_loc+2]]
+#             y_5 = [y[x_loc-2], y[x_loc-1], y[x_loc], y[x_loc+1], y[x_loc+2]]
+#             s = interpolate.UnivariateSpline(x_5, y_5)
+#             xs = np.linspace(x_5[0], x_5[len(x_5)-1])
+#             ys = s(x_5)
+#             plt.plot(x_5, ys)
+#     plt.show()
 
 if __name__ == '__main__':
     print __doc__
@@ -47,6 +49,6 @@ if __name__ == '__main__':
         print 'No contours found in image'
     else:
         cv2.drawContours(img, contours, 0, (0, 255, 0), 2)
-        
+
     cv2.imshow(fn, img)
     cv2.waitKey(0)
