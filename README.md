@@ -10,4 +10,5 @@ Field created by arbitrary geometry of water droplet in uniformly applied field
 - [x] use geometry to form weighted mesh
 - [ ] populate 2D array with mesh points
 - [ ] set boundary conditions
+- - ideas?
 - [ ] solve through over-relaxation
