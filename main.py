@@ -8,6 +8,7 @@ import cv2
 import sys
 from numpy.testing import assert_approx_equal
 import math
+
 # TODO:
 # + Mesh -> equidistant on boundary
 # - Boundary Conditions
@@ -59,8 +60,6 @@ def get_mesh(cnt, width, height):
         mesh_x.append(j)
         plt.axvline(x=j)
 
-    print len(mesh_x)
-
     plt.plot(x, y, "r-")
     plt.ylim([0, height])
     plt.xlim([0, width])
@@ -83,7 +82,7 @@ if __name__ == '__main__':
         imgrey = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
         edges = cv2.Canny(imgrey, 500, 500)
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE,
-                                               cv2.CHAIN_APPROX_SIMPLE)
+                                               cv2.CHAIN_APPROX_NONE)
         length = len(contours)
         if length > 1:
             print 'Too many contours found...'
